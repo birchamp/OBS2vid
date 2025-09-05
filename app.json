@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "OBS2vid",
+    "slug": "obs2vid",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "newArchEnabled": true,
+    "jsEngine": "hermes",
+    "platforms": ["ios", "android"],
+    "android": {
+      "package": "com.obs2vid.app",
+      "permissions": ["RECORD_AUDIO"]
+    }
+  }
+}
+
