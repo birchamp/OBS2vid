@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2021",
-    "module": "ES2020",
-    "moduleResolution": "Bundler",
+    "module": "es2020",
+    "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
@@ -23,5 +23,6 @@
     "src",
     "scripts",
     "jest.config.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

@@ -2,7 +2,8 @@
  * Fetch Open Bible Stories English v9 from Door43 and cache locally.
  * Run: npm run fetch:obs:en
  */
-import fs from 'node:fs/promises';
+import fsp from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
 import https from 'node:https';
 import { parseStoryMarkdown } from '../src/lib/parseObs';
@@ -17,17 +18,18 @@ function dl(url: string, dest: string): Promise<void> {
   return new Promise((resolve, reject) => {
     https.get(url, res => {
       if (res.statusCode !== 200) return reject(new Error('HTTP ' + res.statusCode));
-      fs.mkdir(path.dirname(dest), { recursive: true }).then(()=>{
-        const file = (fs as any).createWriteStream(dest);
+      fsp.mkdir(path.dirname(dest), { recursive: true }).then(()=>{
+        const file = fs.createWriteStream(dest);
         res.pipe(file);
-        file.on('finish', () => file.close().then(resolve));
-      });
+        file.on('finish', () => file.close());
+        file.on('close', resolve);
+      }).catch(reject);
     }).on('error', reject);
   });
 }
 
 async function main() {
-  await fs.mkdir(OUT, { recursive: true });
+  await fsp.mkdir(OUT, { recursive: true });
   for (const id of STORIES) {
     const url = `${BASE}/${id}.md`;
     const dest = path.join(OUT, `${id}.md`);
@@ -35,7 +37,7 @@ async function main() {
     await dl(url, dest);
 
     // Parse sections to determine number of frames and image URLs if present
-    const md = await fs.readFile(dest, 'utf8');
+    const md = await fsp.readFile(dest, 'utf8');
     const storyId = Number(id);
     const story = parseStoryMarkdown(md, storyId);
     // Cache images for UI and export sizes

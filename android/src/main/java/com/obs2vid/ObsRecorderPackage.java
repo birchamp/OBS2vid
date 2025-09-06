@@ -15,6 +15,7 @@ public class ObsRecorderPackage implements ReactPackage {
   public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
     modules.add(new ObsRecorderModule(reactContext));
+    modules.add(new ObsExporterModule(reactContext));
     return modules;
   }
 
@@ -24,4 +25,3 @@ public class ObsRecorderPackage implements ReactPackage {
     return Collections.emptyList();
   }
 }
-

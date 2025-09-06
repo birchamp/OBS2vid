@@ -1,16 +1,22 @@
+
 {
   "expo": {
     "name": "OBS2vid",
     "slug": "obs2vid",
     "version": "0.1.0",
+    "sdkVersion": "53.0.0",
     "orientation": "portrait",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "jsEngine": "hermes",
     "platforms": ["ios", "android"],
     "android": {
       "package": "com.obs2vid.app",
       "permissions": ["RECORD_AUDIO"]
+    },
+    "ios": {
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "OBS2vid needs microphone access to record your narration."
+      }
     }
   }
 }
-

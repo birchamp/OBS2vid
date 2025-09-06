@@ -1,1 +1,31 @@
 node_modules
+.expo/
+
+# Logs
+*.log
+expo_debug.log
+expo_output.log
+expo_test.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Cache and temporary files
+cache/
+.expo-shared
+
+# Build outputs
+dist/
+build/
